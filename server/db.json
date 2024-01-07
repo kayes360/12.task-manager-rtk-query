@@ -83,7 +83,7 @@
       },
       "deadline": "2023-03-15",
       "id": 1,
-      "status": "inProgress"
+      "status": "pending"
     },
     {
       "taskName": "Task Two",
@@ -97,23 +97,26 @@
         "projectName": "Flight Booking",
         "colorClass": "color-flight"
       },
-      "deadline": "2023-03-23",
-      "id": 2
+      "deadline": "2023-04-23",
+      "id": 2, 
+      "status": "inProgress"
     },
     {
       "taskName": "Task Three",
       "teamMember": {
         "name": "Sumit Saha",
         "avatar": "/images/avatars/sumit.png",
-        "id": 1
+        "id": 1,
+        "status": "inProgress"
       },
       "project": {
         "id": 3,
         "projectName": "Product Cart",
         "colorClass": "color-productCart"
       },
-      "deadline": "2023-03-03",
-      "id": 3
+      "deadline": "2023-11-03",
+      "id": 3,
+      "status": "pending"
     },
     {
       "taskName": "New Task",
@@ -127,8 +130,9 @@
         "projectName": "Scoreboard",
         "colorClass": "color-scoreboard"
       },
-      "deadline": "2023-03-11",
-      "id": 4
+      "deadline": "2023-09-11",
+      "id": 4,
+      "status": "inProgress"
     },
     {
       "taskName": "Fix a bug",
