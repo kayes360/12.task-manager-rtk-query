@@ -5,6 +5,7 @@ import AddNew from "./AddNew";
 function App() {
   return (
     <>
+    <div className="text-[#111827]">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/addnew/:id" element={<AddNew />}></Route>
         </Routes>
       </BrowserRouter>
+      </div>
     </>
   );
 }

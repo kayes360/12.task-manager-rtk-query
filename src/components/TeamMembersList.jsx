@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 export default function TeamMembersList() {
   const { data: team, isLoading, isError, error } = useGetTeamMembersQuery();
-  console.log("team", team) 
+  // console.log("team", team) 
 
   /* --------------------- */
   /* Decide what to render */

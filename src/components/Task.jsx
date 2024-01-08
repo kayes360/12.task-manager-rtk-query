@@ -44,11 +44,11 @@ export default function Task({ task }) {
           </Link>
         )}
 
-        <select className="lws-status" value={status}>
+        {/* <select className="lws-status" value={status}>
           <option value="pending">Pending</option>
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>
-        </select>
+        </select> */}
       </div>
     </div>
   );

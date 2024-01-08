@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "./Checkbox";
 import { useGetProjectsQuery } from "../features/projects/projectsApi";
 import Error from "./Error";
 import Loading from "./Loading";
 
-export default function ProjectsList() {
-  const { data: projects, isLoading, isError, error } = useGetProjectsQuery(); 
+export default function ProjectsList({ setFilteredProjects, projectNameList, setProjectNameList }) {
+  const { data: projects, isLoading, isError, error } = useGetProjectsQuery();
+
+  useEffect(() => {
+    if (projects?.length > 0) {
+      setProjectNameList(projects?.map((project) => project.projectName));
+    }
+  }, [projects]);
+
+
+
   /* --------------------- */
   /* Decide what to render */
   /* --------------------- */
@@ -25,10 +34,15 @@ export default function ProjectsList() {
   /* in not loading and not error but array of object length is greater than 0 */
   if (!isLoading && !isError && projects?.length > 0) {
     content = projects.map((project) => (
-       <Checkbox key={project.id} project={project}/>
+      <Checkbox
+        key={project.id}
+        project={project}
+        projectNameList={projectNameList}
+        setProjectNameList={setProjectNameList}
+      />
     ));
   }
- 
+
   return (
     <div>
       <h3 className="text-xl font-bold">Projects</h3>
