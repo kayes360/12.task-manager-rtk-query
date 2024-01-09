@@ -8,7 +8,6 @@ Project Description
 
 - [ ] 8.make the status selector functional in task list  
 - [ ] 10. make the delete button functional in 'Optimistic way'  
-- [ ] 11.when adding new task team and project list should be fetched from server  
 - [ ] 12.make the create new task in a passimistic way to upate cache after adding new task  
 - [ ] 13.after adding task redirect to homepage  
 - [ ] 15.if edit button clicked edit form will open with editable information  
@@ -32,4 +31,5 @@ Project Description
 - [x] 7. use filtering for tasklist based on selected projects  
 - [x] 9. if task is complete show delete button  
 - [x] 14.if task is complete do not show edit button  
+- [x] 11.when adding new task team and project list should be fetched from server  
 

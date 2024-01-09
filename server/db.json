@@ -98,7 +98,7 @@
         "colorClass": "color-flight"
       },
       "deadline": "2023-04-23",
-      "id": 2, 
+      "id": 2,
       "status": "inProgress"
     },
     {
@@ -149,6 +149,54 @@
       },
       "id": 5,
       "status": "completed"
+    },
+    {
+      "taskName": "Cole Maynard",
+      "teamMember": {
+        "id": "6",
+        "name": "Ferdous Hassan",
+        "avatar": "/images/avatars/ferdous.png"
+      },
+      "project": {
+        "id": "6",
+        "projectName": "Job Finder",
+        "colorClass": "color-jobFinder"
+      },
+      "deadline": "1970-04-26",
+      "status": "pending",
+      "id": 6
+    },
+    {
+      "taskName": "Merritt King",
+      "teamMember": {
+        "id": "5",
+        "name": "Riyadh Hassan",
+        "avatar": "/images/avatars/riyadh.png"
+      },
+      "project": {
+        "id": "1",
+        "projectName": "Scoreboard",
+        "colorClass": "color-scoreboard"
+      },
+      "deadline": "2013-12-10",
+      "status": "pending",
+      "id": 7
+    },
+    {
+      "taskName": "Lavinia Mcintosh",
+      "teamMember": {
+        "id": "5",
+        "name": "Riyadh Hassan",
+        "avatar": "/images/avatars/riyadh.png"
+      },
+      "project": {
+        "id": "3",
+        "projectName": "Product Cart",
+        "colorClass": "color-productCart"
+      },
+      "deadline": "1982-11-28",
+      "status": "pending",
+      "id": 8
     }
   ]
 }
