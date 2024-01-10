@@ -4,11 +4,24 @@ import { FiEdit } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useUpdateTaskMutation } from "../features/tasks/tasksApi";
 export default function Task({ task }) {
-  const { taskName, teamMember, project, deadline, status } = task;
-
+  const { id, taskName, teamMember, project, deadline, status } = task;
   const deadlineDate = moment(deadline).format("DD");
   const deadlineMonth = moment(deadline).format("MMMM");
+
+  const [updateTask, { isSuccess: isUpdateTaskSuccess }] =
+    useUpdateTaskMutation();
+
+  const handleStatus = (e) => {
+    const selectedTaskId = e.target.id;
+    const selectedTaskStatus = e.target.value;
+    const updatedStatusInfo = {
+      selectedTaskId,
+      updatedStatus: { status: selectedTaskStatus },
+    };
+    updateTask(updatedStatusInfo);
+  };
 
   //status
   //fix badge color
@@ -44,11 +57,16 @@ export default function Task({ task }) {
           </Link>
         )}
 
-        {/* <select className="lws-status" value={status}>
+        <select
+          className="lws-status"
+          value={status}
+          id={id}
+          onChange={(e) => handleStatus(e)}
+        >
           <option value="pending">Pending</option>
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>
-        </select> */}
+        </select>
       </div>
     </div>
   );

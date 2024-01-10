@@ -73,11 +73,11 @@ export default function AddNew() {
     addTask(newTask);
   };
 
-  // useEffect(() => {
-  //    if (isAddTaskSuccess) {
-  //     navigate("/")
-  //    }
-  // }, [isAddTaskSuccess])
+  useEffect(() => {
+     if (isAddTaskSuccess) {
+      navigate("/")
+     }
+  }, [isAddTaskSuccess])
   
   return (
     <>

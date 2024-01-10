@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "/logoG.gif";
+import Logo from "/logo.gif";
 import { IoIosSearch } from "react-icons/io";
 export default function Navbar() {
   return (

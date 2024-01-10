@@ -83,7 +83,7 @@
       },
       "deadline": "2023-03-15",
       "id": 1,
-      "status": "pending"
+      "status": "inProgress"
     },
     {
       "taskName": "Task Two",
@@ -151,52 +151,20 @@
       "status": "completed"
     },
     {
-      "taskName": "Cole Maynard",
+      "taskName": "Shaeleigh Drake",
       "teamMember": {
-        "id": "6",
-        "name": "Ferdous Hassan",
-        "avatar": "/images/avatars/ferdous.png"
+        "id": "4",
+        "name": "Md Salahuddin",
+        "avatar": "/images/avatars/salahuddin.png"
       },
       "project": {
         "id": "6",
         "projectName": "Job Finder",
         "colorClass": "color-jobFinder"
       },
-      "deadline": "1970-04-26",
-      "status": "pending",
+      "deadline": "1996-06-18",
+      "status": "completed",
       "id": 6
-    },
-    {
-      "taskName": "Merritt King",
-      "teamMember": {
-        "id": "5",
-        "name": "Riyadh Hassan",
-        "avatar": "/images/avatars/riyadh.png"
-      },
-      "project": {
-        "id": "1",
-        "projectName": "Scoreboard",
-        "colorClass": "color-scoreboard"
-      },
-      "deadline": "2013-12-10",
-      "status": "pending",
-      "id": 7
-    },
-    {
-      "taskName": "Lavinia Mcintosh",
-      "teamMember": {
-        "id": "5",
-        "name": "Riyadh Hassan",
-        "avatar": "/images/avatars/riyadh.png"
-      },
-      "project": {
-        "id": "3",
-        "projectName": "Product Cart",
-        "colorClass": "color-productCart"
-      },
-      "deadline": "1982-11-28",
-      "status": "pending",
-      "id": 8
     }
   ]
 }
