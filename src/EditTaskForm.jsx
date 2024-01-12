@@ -2,10 +2,33 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { useGetProjectsQuery } from "./features/projects/projectsApi";
 import { useGetTeamMembersQuery } from "./features/teamMembers/teamMembersApi";
+import { useGetTaskQuery, useUpdateTaskMutation } from "./features/tasks/tasksApi";
+import { useNavigate, useParams, useRouteError } from "react-router-dom";
 import Error from "./components/Error";
-import { useAddTaskMutation } from "./features/tasks/tasksApi";
-import { useNavigate } from "react-router-dom";
-export default function AddNew() {
+
+export default function TaskForm() {
+  const { id: paramId } = useParams();
+
+  const { data: task, isLoading, isError, error } = useGetTaskQuery(paramId);
+  const [updateTask, { isSuccess: isEditTaskSuccess }] =
+  useUpdateTaskMutation();
+ 
+  useEffect(() => {
+    // console.log("task", task);
+    if (task) {
+      setTaskName(task.taskName)
+      setAssignedTeamMemberId(task.teamMember.id)
+      setAssignedTeamMember(task.teamMember.name)
+      setAssignedTeamMemberAvatar(task.teamMember.avatar)
+
+      setAssignedProjectId(task.project.id)
+      setAssignedProject(task.project.projectName)
+      setAssignedProjectColorClass(task.project.colorClass)
+
+      setDeadline(task.deadline)   
+    }
+  }, [task]);
+
   const {
     data: team,
     isLoading: isTeamLoading,
@@ -32,8 +55,7 @@ export default function AddNew() {
 
   const [deadline, setDeadline] = useState("");
 
-  const [addTask, { isSuccess: isAddTaskSuccess }] = useAddTaskMutation();
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
   const handleTeamMember = (e) => {
     setAssignedTeamMember(e.target.value);
@@ -53,9 +75,11 @@ export default function AddNew() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newTask = {
-      taskName,
+ 
+    const updatedTaskData = {
+      selectedTaskId: paramId,
+      updatedData: {
+        taskName,
       teamMember: {
         id: assignedTeamMemberId,
         name: assignedTeamMember,
@@ -68,24 +92,24 @@ export default function AddNew() {
       },
       deadline,
       status: "pending",
-    };
-
-    addTask(newTask);
+      }
+    }; 
+    updateTask(updatedTaskData)
   };
 
   useEffect(() => {
-     if (isAddTaskSuccess) {
-      navigate("/")
-     }
-  }, [isAddTaskSuccess])
-  
+    if (isEditTaskSuccess) {
+      navigate("/");
+    }
+  }, [isEditTaskSuccess]);
+
   return (
     <>
       <Navbar />
       <div className="container relative">
         <main className="relative z-20 max-w-3xl mx-auto rounded-lg xl:max-w-none">
           <h1 className="mt-4 mb-8 text-3xl font-bold text-center text-gray-800">
-            Create Task for Your Team
+            Update Task for Your Team
           </h1>
 
           <div className="justify-center mb-10 space-y-2 md:flex md:space-y-0">
@@ -97,7 +121,7 @@ export default function AddNew() {
                   name="taskName"
                   id="lws-taskName"
                   required
-                  placeholder="Set Task Name"
+                  placeholder={taskName || "Previous Task Not Found"}
                   value={taskName}
                   onChange={(e) => setTaskName(e.target.value)}
                 />
@@ -111,8 +135,8 @@ export default function AddNew() {
                   required
                   onChange={(e) => handleTeamMember(e)}
                 >
-                  <option value="" hidden defaultValue>
-                    {isProjectsError ? "No team member found" : "Select Job"}
+                  <option value="" hidden defaultValue> 
+                    {assignedTeamMember !== '' ? assignedTeamMember : "Select Team Member"}
                   </option>
                   {team?.map((teamMember) => (
                     <option
@@ -134,8 +158,9 @@ export default function AddNew() {
                   required
                   onChange={(e) => handleProject(e)}
                 >
-                  <option value="" hidden defaultValue>
-                    {isTeamError ? "No project found " : "Select Project"}
+                  <option value="" hidden defaultValue> 
+                    {assignedProject !== '' ? assignedProject : "Select Project"}
+
                   </option>
                   {projects?.map((project) => (
                     <option
@@ -157,6 +182,7 @@ export default function AddNew() {
                   name="deadline"
                   id="lws-deadline"
                   required
+                  value={deadline !== '' ? deadline: ''}
                   onChange={(e) => {
                     setDeadline(e.target.value);
                   }}

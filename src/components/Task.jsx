@@ -4,14 +4,25 @@ import { FiEdit } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { useUpdateTaskMutation } from "../features/tasks/tasksApi";
+import {
+  useDeleteTaskMutation, 
+  useUpdateTaskStatusMutation,
+} from "../features/tasks/tasksApi";
 export default function Task({ task }) {
   const { id, taskName, teamMember, project, deadline, status } = task;
   const deadlineDate = moment(deadline).format("DD");
   const deadlineMonth = moment(deadline).format("MMMM");
 
-  const [updateTask, { isSuccess: isUpdateTaskSuccess }] =
-    useUpdateTaskMutation();
+  const [updateTaskStatus, { isSuccess: isUpdateTaskSuccess }] =
+  useUpdateTaskStatusMutation();
+  const [deleteTask, { isSuccess: isDeleteTaskSuccess }] =
+    useDeleteTaskMutation();
+
+  const handleDelete = () => {
+    console.log("handle delete", id);
+    deleteTask(id);
+    console.log("handle delete", id);
+  };
 
   const handleStatus = (e) => {
     const selectedTaskId = e.target.id;
@@ -20,7 +31,7 @@ export default function Task({ task }) {
       selectedTaskId,
       updatedStatus: { status: selectedTaskStatus },
     };
-    updateTask(updatedStatusInfo);
+    updateTaskStatus(updatedStatusInfo);
   };
 
   //status
@@ -47,12 +58,12 @@ export default function Task({ task }) {
         {/* <!-- delete button will not shown to the ui, until the status of the task will be completed --> */}
 
         {status === "completed" && (
-          <button className="lws-delete">
+          <button className="lws-delete" onClick={handleDelete}>
             <GoTrash className="w-6 h-6 text-gray-600 hover:text-red-600" />
           </button>
         )}
         {status !== "completed" && (
-          <Link to="/addnew/:id" className="lws-edit">
+          <Link to={`/edittaskform/${id}`} className="lws-edit">
             <FiEdit className="w-6 h-6 text-gray-600 hover:text-indigo-600" />
           </Link>
         )}

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import AddNew from "./AddNew";
+import AddTaskForm from "./AddTaskForm";
+import EditTaskForm from "./EditTaskForm";
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/addnew" element={<AddNew />}></Route>
-          <Route path="/addnew/:id" element={<AddNew />}></Route>
+          <Route path="/addtaskform" element={<AddTaskForm />}></Route>
+          <Route path="/edittaskform/:id" element={<EditTaskForm />}></Route>
         </Routes>
       </BrowserRouter>
       </div>

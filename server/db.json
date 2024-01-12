@@ -148,23 +148,39 @@
         "colorClass": "color-bookstore"
       },
       "id": 5,
-      "status": "completed"
+      "status": "inProgress"
     },
     {
-      "taskName": "Shaeleigh Drake",
+      "taskName": "Audrey Day",
       "teamMember": {
-        "id": "4",
-        "name": "Md Salahuddin",
-        "avatar": "/images/avatars/salahuddin.png"
+        "id": "3",
+        "name": "Akash Ahmed",
+        "avatar": "/images/avatars/akash.png"
+      },
+      "project": {
+        "id": "3",
+        "projectName": "Product Cart",
+        "colorClass": "color-productCart"
+      },
+      "deadline": "1978-11-21",
+      "status": "pending",
+      "id": 6
+    },
+    {
+      "taskName": "Lisandra Hull",
+      "teamMember": {
+        "id": "5",
+        "name": "Riyadh Hassan",
+        "avatar": "/images/avatars/riyadh.png"
       },
       "project": {
         "id": "6",
         "projectName": "Job Finder",
         "colorClass": "color-jobFinder"
       },
-      "deadline": "1996-06-18",
+      "deadline": "1998-03-02",
       "status": "completed",
-      "id": 6
+      "id": 7
     }
   ]
 }

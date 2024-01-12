@@ -3,7 +3,8 @@ import Task from "./Task";
 import Loading from "./Loading";
 import Error from "./Error";
 import { useGetTasksQuery } from "../features/tasks/tasksApi";
-export default function TasksList({ projectNameList }) { 
+
+export default function TasksList({ projectNameList, searchInput }) { 
   const { data: tasks, isLoading, isError, error } = useGetTasksQuery();
 
   // Filter tasks based on projectNameList
@@ -11,28 +12,38 @@ export default function TasksList({ projectNameList }) {
     projectNameList.includes(task.project.projectName)
   );
 
+  // Filter tasks based on searchInput
+  const searchFilteredTasks = filteredTasks?.filter(
+    (task) =>
+      !searchInput ||
+      task.taskName.toLowerCase().includes(searchInput.toLowerCase()) ||
+      task.teamMember.name.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   /* --------------------- */
   /* Decide what to render */
   /* --------------------- */
   let content = null;
-  /* in loading condition */
+
+  // Loading condition
   if (isLoading) {
     content = <Loading loadingMessage="Content is loading.." />;
   }
-  /* in not loading but error condition */
+
+  // Error condition
   if (!isLoading && isError) {
     content = <Error errorMessage={error} />;
   }
-  /* in not loading and not error but array of object length is 0 */
-  if (!isLoading && isError && filteredTasks?.length === 0) {
+
+  // No task found condition
+  if (!isLoading && !isError && (!searchInput || searchFilteredTasks?.length === 0)) {
     content = <Error errorMessage="No Task Found!" />;
   }
-  /* in not loading and not error but array of object length is greater than 0 */
-  if (!isLoading && !isError && filteredTasks?.length > 0) {
-    content = filteredTasks.map((task) => <Task key={task.id} task={task} />);
+
+  // Render tasks
+  if (!isLoading && !isError && searchFilteredTasks?.length > 0) {
+    content = searchFilteredTasks.map((task) => <Task key={task.id} task={task} />);
   }
-  
- 
 
   return <div className="lws-task-list">{content}</div>;
 }
