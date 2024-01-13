@@ -25,7 +25,8 @@ export default function Home() {
       setSearchInput(value);
     }
   };
-  const handleSearch = debounceHandler(doSearch, 500);
+  // const handleSearch = debounceHandler(doSearch, 500);
+  const handleSearch = (value) => { setSearchInput(value) }
   return (
     <>
       <Navbar  handleSearch={handleSearch}/>

@@ -13,12 +13,16 @@ export default function TasksList({ projectNameList, searchInput }) {
   );
 
   // Filter tasks based on searchInput
-  const searchFilteredTasks = filteredTasks?.filter(
+  const searchFilteredTasks = Object.values(filteredTasks || {}).filter(
     (task) =>
       !searchInput ||
       task.taskName.toLowerCase().includes(searchInput.toLowerCase()) ||
       task.teamMember.name.toLowerCase().includes(searchInput.toLowerCase())
   );
+  useEffect(() => {
+    console.log("searchFilteredTasks",searchFilteredTasks)
+  }, [searchFilteredTasks])
+  
 
   /* --------------------- */
   /* Decide what to render */
